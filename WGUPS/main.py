@@ -5,7 +5,6 @@
 # Import classes and data files
 import Truck
 from Package import Package
-import CSV
 from CreateHashTable import CreateHashMap
 
 import csv
@@ -57,6 +56,21 @@ def add_packages(filename, hash_table):
             # Insert the package into the hash table
             hash_table.insert(pack_id, pack)
 
+
+# Method to determine distance between address x and y
+def calculate_distance(x, y):
+    distance = CSV_Distance[x][y]
+    if distance == '':
+        distance = CSV_Distance[y][x]
+
+    return float(distance)
+
+
+# Method to parse address number from full address string
+def parse_address(address):
+    for r in CSV_Address:
+        if address in r[2]:
+            return int(r[0])
 
 # Create hash table and load in packages
 hash_Table = CreateHashMap()
