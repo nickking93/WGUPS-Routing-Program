@@ -1,8 +1,8 @@
 # Define Package Class
 class Package:
 
-    def __init__(self, id, address, city, state, zipcode, delivery_deadline, weight, status):
-        self.id = id
+    def __init__(self, ID, address, city, state, zipcode, delivery_deadline, weight, status):
+        self.ID = ID
         self.address = address
         self.city = city
         self.state = state
@@ -16,7 +16,7 @@ class Package:
     # Overloaded string conversion method to create a string representation of the attributes
     def __str__(self):
 
-        return "%s, %s, %s, %s, %s, %s, %s, %s, %s" % (self.id, self.address, self.city, self.state, self.zipcode,
+        return "%s, %s, %s, %s, %s, %s, %s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zipcode,
                                                        self.delivery_deadline, self.weight, self.delivery_time,
                                                        self.status)
 
