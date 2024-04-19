@@ -72,6 +72,20 @@ def parse_address(address):
         if address in r[2]:
             return int(r[0])
 
+
+# Create the 3 truck objects with default attributes based on assignment assumptions and supporting data
+truck1 = Truck.Truck(16, 18, None,
+                     [1, 13, 14, 15, 16, 20, 29, 30, 31, 34, 37, 40], 0.0,
+                     "4001 South 700 East", datetime.timedelta(hours=8))
+
+truck2 = Truck.Truck(16, 18, None,
+                     [3, 6, 12, 17, 18, 19, 21, 22, 23, 24, 26, 27, 35, 36, 38, 39], 0.0,
+                     "4001 South 700 East", datetime.timedelta(hours=10, minutes=20))
+
+truck3 = Truck.Truck(16, 18, None,
+                     [2, 4, 5, 6, 7, 8, 9, 10, 11, 25, 28, 32, 33], 0.0,
+                     "4001 South 700 East", datetime.timedelta(hours=9, minutes=5))
+
 # Create hash table and load in packages
 hash_Table = CreateHashMap()
 add_packages("CSV/WGUPS_Packages.csv", hash_Table)
