@@ -54,7 +54,7 @@ def add_packages(filename, hash_table):
                            pack_zip, pack_deadline, pack_weight, pack_status)
 
             # Insert the package into the hash table
-            hash_table.insert(pack_id, pack)
+            hash_table.ht_insert(pack_id, pack)
 
 
 # Method to determine distance between address x and y

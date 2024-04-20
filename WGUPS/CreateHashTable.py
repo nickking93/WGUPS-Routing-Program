@@ -9,7 +9,7 @@ class CreateHashMap:
             self.list.append([])
 
     # Method to insert package to hash table
-    def insert(self, key, package):
+    def ht_insert(self, key, package):
         bucket = hash(key) % len(self.list)
         buckets = self.list[bucket]
 
@@ -25,3 +25,20 @@ class CreateHashMap:
         buckets.append(key_val)
         return True
 
+    # Search for package in hash table
+    def ht_search(self, key):
+        bucket = hash(key) % len(self.list)
+        buckets = self.list[bucket]
+        for val in buckets:
+            if key == val[0]:
+                return val[0]
+
+        return None  # Result if search finds no match
+
+    # Remove package from hash table
+    def ht_remove(self, key):
+        bucket = hash(key) % len(self.list)
+        target = self.list[bucket]
+
+        if key in target:
+            target.remove(key)
