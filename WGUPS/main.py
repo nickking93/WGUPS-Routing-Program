@@ -14,6 +14,7 @@ import datetime
 with open("CSV/WGUPS_Addresses.csv") as dataFile:
     CSV_Address = csv.reader(dataFile)
     CSV_AddressList = []
+    next(CSV_Address)
     for row in CSV_Address:
         CSV_AddressList.append(row)
 
@@ -21,6 +22,7 @@ with open("CSV/WGUPS_Addresses.csv") as dataFile:
 with open("CSV/WGUPS_Distance.csv") as dataFile1:
     CSV_Distance = csv.reader(dataFile1)
     CSV_DistanceList = []
+    next(CSV_Distance)
     for row in CSV_Distance:
         CSV_DistanceList.append(row)
 
@@ -28,6 +30,7 @@ with open("CSV/WGUPS_Distance.csv") as dataFile1:
 with open("CSV/WGUPS_Packages.csv") as dataFile2:
     CSV_Packages = csv.reader(dataFile2)
     CSV_PackageList = []
+    next(CSV_Packages)
     for row in CSV_Packages:
         CSV_PackageList.append(row)
 
@@ -68,8 +71,8 @@ def calculate_distance(x, y):
 
 # Method to parse address number from full address string
 def parse_address(address):
-    for r in CSV_Address:
-        if address in r[2]:
+    for i, r in enumerate(CSV_AddressList):
+        if i > 0 and address in r[2]:
             return int(r[0])
 
 
@@ -125,7 +128,20 @@ def assign_packages(truck):
         destination.departure_time = truck.depart_time
 
 
-assign_packages(truck1)
-assign_packages(truck2)
-truck3.depart_time = min(truck1.time, truck2.time)
-assign_packages(truck3)
+# Sort the packages using the truck objects created previously
+# assign_packages(truck1)
+# assign_packages(truck2)
+# truck3.depart_time = min(truck1.time, truck2.time)
+# assign_packages(truck3)
+
+
+# Main class will display user interface in console
+def main():
+    print(CSV_AddressList)
+    print(CSV_PackageList)
+    print(CSV_DistanceList)
+    print("WGU Parcel Service:")
+
+
+if __name__ == "__main__":
+    main()
