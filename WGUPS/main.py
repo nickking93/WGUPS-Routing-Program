@@ -135,7 +135,7 @@ def assign_packages(truck):
 # assign_packages(truck3)
 
 
-# Main class will display user interface in console
+# Main class displays user interface in console
 def main():
     print(CSV_AddressList)
     print(CSV_PackageList)
