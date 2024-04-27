@@ -133,6 +133,7 @@ truck3.depart_time = min(truck1.time, truck2.time)
 assign_packages(truck3)
 totalMiles = truck1.totalMiles + truck2.totalMiles + truck3.totalMiles
 
+
 # Main class displays user interface in console
 def main():
     # print(CSV_AddressList)
@@ -161,7 +162,22 @@ def main():
             ans = False
 
         elif ans == "2":
-            # TODO write code to print a single package at a given time.
+            # Take as input a time and package number and display the information
+            ans_2 = True
+            while ans_2:
+                try:
+                    user_time = input("Using the format HH:MM:SS, please enter a time: ")
+                    user_package = input("Please enter a package number: ")
+                    (h, m, s) = user_time.split(":")
+                    format_time = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+                    package = hash_Table.ht_search(int(user_package))
+                    package.get_status(format_time)
+                    print(str(package))
+                    ans_2 = False
+
+                except ValueError:
+                    print("One or both values were not valid. Please try again: ")
+                    ans_2 = True
 
             ans = False
 
