@@ -11,31 +11,29 @@ import csv
 import datetime
 
 # Obtain addresses
-with open("CSV/WGUPS_Addresses.csv") as dataFile:
-    CSV_Address = csv.reader(dataFile)
+with open("CSV/WGUPS_Addresses.csv") as addressFile:
+    CSV_Address = csv.reader(addressFile)
     CSV_AddressList = []
     next(CSV_Address)
     for row in CSV_Address:
         CSV_AddressList.append(row)
 
 # Obtain distances
-with open("CSV/WGUPS_Distance.csv") as dataFile1:
-    CSV_Distance = csv.reader(dataFile1)
+with open("CSV/WGUPS_Distance.csv") as distanceFile:
+    CSV_Distance = csv.reader(distanceFile)
     CSV_DistanceList = []
     next(CSV_Distance)
     for row in CSV_Distance:
         CSV_DistanceList.append(row)
 
 # Obtain packages
-with open("CSV/WGUPS_Packages.csv") as dataFile2:
-    CSV_Packages = csv.reader(dataFile2)
+with open("CSV/WGUPS_Packages.csv") as packageFile:
+    CSV_Packages = csv.reader(packageFile)
     CSV_PackageList = []
     next(CSV_Packages)
     for row in CSV_Packages:
         CSV_PackageList.append(row)
 
-
-# print(f'{CSV_Packages}') # Test package data import
 
 # Method to create package objects from CSV file
 def add_packages(filename, hash_table):
@@ -43,7 +41,7 @@ def add_packages(filename, hash_table):
         package_data = csv.reader(package_file)
         next(package_data)  # Skip first line to remove header
         for package in package_data:  # Set attributes
-            pack_id = package[0]
+            pack_id = int(package[0])
             pack_address = package[1]
             pack_city = package[2]
             pack_state = package[3]
@@ -69,7 +67,7 @@ def calculate_distance(x, y):
     return float(distance)
 
 
-# Method to parse address number from full address string
+# Method to get address ID number
 def get_address_id(address):
     for r in CSV_AddressList:
         if address in r[2]:
@@ -129,7 +127,7 @@ def assign_packages(truck):
 
 
 # Sort the packages using the truck objects created previously
-# assign_packages(truck1)
+assign_packages(truck1)
 # assign_packages(truck2)
 # truck3.depart_time = min(truck1.time, truck2.time)
 # assign_packages(truck3)
