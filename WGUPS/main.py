@@ -136,10 +136,6 @@ totalMiles = truck1.totalMiles + truck2.totalMiles + truck3.totalMiles
 
 # Main class displays user interface in console
 def main():
-    # print(CSV_AddressList)
-    # print(CSV_PackageList)
-    # print(CSV_DistanceList)
-
     # Display welcome message and menu
     print("WGU Parcel Tracking Service:")
     ans = True  # Stores user menu choice
@@ -182,7 +178,21 @@ def main():
             ans = False
 
         elif ans == "3":
-            # TODO write code to print all packages at a given time.
+            # Take as input a time and display information for all packages
+            ans_3 = True
+            while ans_3:
+                try:
+                    user_time = input("Using the format HH:MM:SS, please enter a time: ")
+                    (h, m, s) = user_time.split(":")
+                    format_time = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+                    for packageID in range(1, 41):
+                        package = hash_Table.ht_search(packageID)
+                        package.get_status(format_time)
+                        print(str(package))
+                    ans_3 = False
+                except ValueError:
+                    print("Invalid time entered. Please try again: ")
+                    ans_3 = True
             ans = False
 
         elif ans == "4":
