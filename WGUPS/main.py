@@ -149,7 +149,10 @@ def main():
         ans = input("Enter the number representing your choice(1-4): ")
         if ans == "1":
             # Print combined miles and every package that will be delivered
-            print(f'WGUPS trucks have {totalMiles} miles on their combined routes today.')
+            print(f'WGUPS trucks have {totalMiles:.1f} miles on their combined routes today.')
+            print(f'Truck 1 has {truck1.totalMiles:.1f} miles.')
+            print(f'Truck 2 has {truck2.totalMiles:.1f} miles.')
+            print(f'Truck 3 has {truck3.totalMiles:.1f} miles.')
             print("All packages scheduled today: ")
             for packageID in range(1, 41):
                 package = hash_Table.ht_search(packageID)
