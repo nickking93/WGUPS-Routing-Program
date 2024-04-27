@@ -140,7 +140,7 @@ def main():
     # print(CSV_DistanceList)
 
     # Display welcome message and menu
-    print("WGU Parcel Service:")
+    print("WGU Parcel Tracking Service:")
     ans = True  # Stores user menu choice
     while ans:
         print("""
@@ -149,14 +149,20 @@ def main():
             3. Print status of all packages at a specific time 
             4. Exit
             """)
-        ans = input("Choose an option 1-4: ")
+        ans = input("Enter the number representing your choice(1-4): ")
         if ans == "1":
-            # TODO write code to print all packages and all miles by all trucks
-            print(f'{totalMiles}')
+            # Print combined miles and every package that will be delivered
+            print(f'WGUPS trucks have {totalMiles} miles on their combined routes today.')
+            print("All packages scheduled today: ")
+            for packageID in range(1, 41):
+                package = hash_Table.ht_search(packageID)
+                print(str(package))
+
             ans = False
 
         elif ans == "2":
             # TODO write code to print a single package at a given time.
+
             ans = False
 
         elif ans == "3":
