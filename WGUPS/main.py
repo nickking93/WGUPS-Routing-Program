@@ -62,31 +62,31 @@ def add_packages(filename, hash_table):
 
 # Method to determine distance between address x and y
 def calculate_distance(x, y):
-    distance = CSV_Distance[x][y]
+    distance = CSV_DistanceList[x][y]
     if distance == '':
-        distance = CSV_Distance[y][x]
+        distance = CSV_DistanceList[y][x]
 
     return float(distance)
 
 
 # Method to parse address number from full address string
-def parse_address(address):
-    for i, r in enumerate(CSV_AddressList):
-        if i > 0 and address in r[2]:
+def get_address_id(address):
+    for r in CSV_AddressList:
+        if address in r[2]:
             return int(r[0])
 
 
 # Create the 3 truck objects with default attributes based on assignment assumptions and package special notes
 truck1 = Truck.Truck(16, 18, None,
-                     [1, 13, 14, 15, 16, 20, 29, 30, 31, 33, 34], 0.0,
+                     [1, 13, 14, 15, 16, 20, 29, 30, 31, 34, 37, 40], 0.0,
                      "4001 South 700 East", datetime.timedelta(hours=8))
 
 truck2 = Truck.Truck(16, 18, None,
-                     [3, 6, 12, 17, 18, 19, 21, 22, 23, 24, 26, 27, 35, 36, 38], 0.0,
+                     [3, 6, 12, 17, 18, 19, 21, 22, 23, 24, 26, 27, 35, 36, 38, 39], 0.0,
                      "4001 South 700 East", datetime.timedelta(hours=10, minutes=20))
 
 truck3 = Truck.Truck(16, 18, None,
-                     [2, 4, 5, 6, 7, 8, 9, 10, 11, 25, 28, 32, 37, 39, 40], 0.0,
+                     [2, 4, 5, 6, 7, 8, 9, 10, 11, 25, 28, 32, 33], 0.0,
                      "4001 South 700 East", datetime.timedelta(hours=9, minutes=5))
 
 # Create hash table and load in packages
@@ -111,8 +111,8 @@ def assign_packages(truck):
 
         # Check the distance between truck and each package and determine next package
         for package in unsorted:
-            if calculate_distance(parse_address(truck.address), parse_address(package.address)) <= destination:
-                destination = calculate_distance(parse_address(truck.address), parse_address(package.address))
+            if calculate_distance(get_address_id(truck.address), get_address_id(package.address)) <= destination:
+                destination = calculate_distance(get_address_id(truck.address), get_address_id(package.address))
                 next_package = package
 
         # Assign next package to truck and remove from unsorted list
@@ -120,7 +120,7 @@ def assign_packages(truck):
         unsorted.remove(next_package)
 
         truck.totalMiles += destination  # Add mileage from each truck to the trucks total mileage
-        truck.address = next_package.addres  # Update trucks starting location to package location in each iteration
+        truck.address = next_package.address  # Update trucks starting location to package location in each iteration
 
         # Update time for truck and next package
         truck.time += datetime.timedelta(hours=destination / 18)
@@ -134,14 +134,42 @@ def assign_packages(truck):
 # truck3.depart_time = min(truck1.time, truck2.time)
 # assign_packages(truck3)
 
-
 # Main class displays user interface in console
 def main():
-    print(CSV_AddressList)
-    print(CSV_PackageList)
-    print(CSV_DistanceList)
+    # print(CSV_AddressList)
+    # print(CSV_PackageList)
+    # print(CSV_DistanceList)
+
+    # Display welcome message and menu
     print("WGU Parcel Service:")
+    ans = True  # Stores user menu choice
+    while ans:
+        print("""
+            1. Print status of all packages and total miles
+            2. Print status of individual package at a specific time
+            3. Print status of all packages at a specific time 
+            4. Exit
+            """)
+        ans = input("Choose an option 1-4: ")
+        if ans == "1":
+            # TODO write code to print all packages and all miles by all trucks
+            ans = False
+
+        elif ans == "2":
+            # TODO write code to print a single package at a given time.
+            ans = False
+
+        elif ans == "3":
+            # TODO write code to print all packages at a given time.
+            ans = False
+
+        elif ans == "4":
+            ans = False
+
+        elif ans != "":
+            print("\n Not a valid option. Please choose an option 1-4.")
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    pass

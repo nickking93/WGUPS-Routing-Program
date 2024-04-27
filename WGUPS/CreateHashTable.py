@@ -11,29 +11,29 @@ class CreateHashMap:
     # Method to insert package to hash table
     def ht_insert(self, key, package):
         bucket = hash(key) % len(self.list)
-        buckets = self.list[bucket]
+        bucket_items = self.list[bucket]
 
         # Check if key exists and update if it does
         # O(N) runtime
-        for val in buckets:
+        for val in bucket_items:
             if val[0] == key:
                 val[1] = package
                 return True
 
         # If key does not exist, append package to end of buckets
         key_val = [key, package]
-        buckets.append(key_val)
+        bucket_items.append(key_val)
         return True
 
     # Search for package in hash table
     def ht_search(self, key):
         bucket = hash(key) % len(self.list)
-        buckets = self.list[bucket]
-        for val in buckets:
-            if key == val[0]:
-                return val[0]
-
-        return None  # Result if search finds no match
+        bucket_items = self.list[bucket]
+        for vals in bucket_items:
+            if key == vals[0]:
+                return vals[1]
+            else:
+                return None  # Result if search finds no match
 
     # Remove package from hash table
     def ht_remove(self, key):
