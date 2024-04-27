@@ -1,7 +1,5 @@
 # Define Hash Map class
-
 class CreateHashMap:
-
     # Create hash table
     def __init__(self, starting_size=20):
         self.list = []
@@ -32,8 +30,8 @@ class CreateHashMap:
         for vals in bucket_items:
             if key == vals[0]:
                 return vals[1]
-            else:
-                return None  # Result if search finds no match
+
+        return None  # Result if search finds no match
 
     # Remove package from hash table
     def ht_remove(self, key):

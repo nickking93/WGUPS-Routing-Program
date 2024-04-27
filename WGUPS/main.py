@@ -122,15 +122,16 @@ def assign_packages(truck):
 
         # Update time for truck and next package
         truck.time += datetime.timedelta(hours=destination / 18)
-        destination.delivery_time = truck.time
-        destination.departure_time = truck.depart_time
+        next_package.delivery_time = truck.time
+        next_package.departure_time = truck.depart_time
 
 
 # Sort the packages using the truck objects created previously
 assign_packages(truck1)
-# assign_packages(truck2)
-# truck3.depart_time = min(truck1.time, truck2.time)
-# assign_packages(truck3)
+assign_packages(truck2)
+truck3.depart_time = min(truck1.time, truck2.time)
+assign_packages(truck3)
+totalMiles = truck1.totalMiles + truck2.totalMiles + truck3.totalMiles
 
 # Main class displays user interface in console
 def main():
@@ -151,6 +152,7 @@ def main():
         ans = input("Choose an option 1-4: ")
         if ans == "1":
             # TODO write code to print all packages and all miles by all trucks
+            print(f'{totalMiles}')
             ans = False
 
         elif ans == "2":
@@ -169,5 +171,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # main()
-    pass
+    main()
