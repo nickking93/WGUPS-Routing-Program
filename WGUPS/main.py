@@ -171,6 +171,14 @@ def main():
                     format_time = datetime.timedelta(hours=int(h), minutes=int(m), seconds=int(s))
                     package = hash_Table.ht_search(int(user_package))
                     package.get_status(format_time)
+
+                    # Check if time is passed 10:30 and update package 9's incorrect address
+                    if format_time >= datetime.timedelta(hours=10, minutes=20, seconds=0):
+                        package.address = '410 S. State St.'
+                        package.city = 'Salt Lake City'
+                        package.state = 'Utah'
+                        package.zipcode = '84111'
+
                     print(str(package))
                     ans_2 = False
 
@@ -191,6 +199,14 @@ def main():
                     for packageID in range(1, 41):
                         package = hash_Table.ht_search(packageID)
                         package.get_status(format_time)
+
+                        # Check if time is passed 10:30 and update package 9's incorrect address
+                        if format_time >= datetime.timedelta(hours=10, minutes=20, seconds=0) and packageID == 9:
+                            package.address = '410 S. State St.'
+                            package.city = 'Salt Lake City'
+                            package.state = 'Utah'
+                            package.zipcode = '84111'
+
                         print(str(package))
                     ans_3 = False
                 except ValueError:
