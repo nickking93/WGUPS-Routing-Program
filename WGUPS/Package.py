@@ -12,13 +12,14 @@ class Package:
         self.status = status
         self.departure_time = None
         self.delivery_time = None
+        self.truck = None
 
     # Overloaded string conversion method to create a string representation of the attributes
     def __str__(self):
 
-        return "%s, %s, %s, %s, %s, %s, %s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zipcode,
+        return "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s" % (self.ID, self.address, self.city, self.state, self.zipcode,
                                                        self.delivery_deadline, self.weight, self.delivery_time,
-                                                       self.status)
+                                                       self.status, self.truck)
 
     # Set delivery status based on delivery time
     def get_status(self, elapsed_time):

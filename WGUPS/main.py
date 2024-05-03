@@ -156,6 +156,16 @@ def main():
             print("All packages scheduled today: ")
             for packageID in range(1, 41):
                 package = hash_Table.ht_search(packageID)
+
+                if package.ID in truck1.packages:
+                    package.truck = 'Truck 1'
+
+                elif package.ID in truck2.packages:
+                    package.truck = 'Truck 2'
+
+                elif package.ID in truck3.packages:
+                    package.truck = 'Truck 3'
+
                 print(str(package))
 
             ans = False
@@ -178,6 +188,15 @@ def main():
                         package.city = 'Salt Lake City'
                         package.state = 'Utah'
                         package.zipcode = '84111'
+
+                    if package.ID in truck1.packages:
+                        package.truck = 'Truck 1'
+
+                    elif package.ID in truck2.packages:
+                        package.truck = 'Truck 2'
+
+                    elif package.ID in truck3.packages:
+                        package.truck = 'Truck 3'
 
                     print(str(package))
                     ans_2 = False
@@ -206,6 +225,15 @@ def main():
                             package.city = 'Salt Lake City'
                             package.state = 'Utah'
                             package.zipcode = '84111'
+
+                        if package.ID in truck1.packages:
+                            package.truck = 'Truck 1'
+
+                        elif package.ID in truck2.packages:
+                            package.truck = 'Truck 2'
+
+                        elif package.ID in truck3.packages:
+                            package.truck = 'Truck 3'
 
                         print(str(package))
                     ans_3 = False
